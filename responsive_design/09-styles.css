@@ -165,25 +165,29 @@
     background: var(--color-white);
   }
 
-  @media only screen and (max-width: 480px) {
-    html {
-        font-size: 57%;
+  @media (max-width: 480px){
+    html{
+      font-size: 57%;
     }
   }
 
-  @media only screen and (min-width: 481px) and (max-width: 767px) {
-    html {
-        font-size: 60%;
+  @media (min-width: 481px) and (max-width: 767px){
+    html{
+      font-size: 60%;
     }
   }
   
   /* Helpers
       ============================= */
-  
+   main img {
+    width: 100%;
+    height: auto;
+   }
+
   .visually-hidden:not(:focus):not(:active) {
     position: absolute !important;
-    height: auto;
-    width: 100%;
+    height: 1px;
+    width: 1px;
     overflow: hidden;
     clip: rect(1px, 1px, 1px, 1px);
     white-space: nowrap;
@@ -224,42 +228,94 @@
   .col-1-2 {
     width: calc((100% / 2) - 2rem);
   }
-
-  @media only screen and (max-width: 767px) {
-    .section-padding {
-        padding: 5rem 1.5rem;
+  
+  @media (max-width: 767px){
+    :root{
+        --section-padding: 5rem 1.5rem;
+        --section-body-padding: 2rem 0 0;
     }
-
-    .section-body-padding{
-        padding: 2rem 0 0;
-    }
-
     ul.row{
-        margin: 0;
-        padding: 0;
-        list-style: none;  
-        flex-direction: column; 
-    }
-
-    .row {
-        display: flex;
         flex-direction: column;
         margin: 0;
-      }
-
+    }
+    .row{
+        flex-direction: column;
+        margin: 0;
+    }
     [class*='col-'] {
         margin: 0 0 3rem 0;
     }
-    
-    .col-1-3 {
+    .col-1-3{
         width: 100%;
-      }
-      
-      .col-1-2 {
+    }
+    .col-1-2{
         width: 100%;
-      }
+    }
+  }
+
+  /* menu btn */
+  .menu-btn:checked ~ .navbar-menu{
+    display: block;
   }
   
+  .header .menu-btn{
+    display: none;
+  }
+
+  .menu-btn:checked ~ .navbar-menu .nav{
+    max-height: 100%;
+    overflow: inherit;
+  }
+
+  .header .menu-btn:checked ~ .menu-icon .navicon{
+    background: transparent;
+  }
+
+  .header .menu-btn:checked ~ .menu-icon .navicon:before{
+    transform: rotate(-45deg);
+  }
+  
+  .header .menu-btn:checked ~ .menu-icon .navicon:after{
+    transform: rotate(45deg);
+  }
+
+  header .menu-btn:checked ~ .menu-icon .navicon:before, .header .menu-btn:checked ~ .menu-icon .navicon:after{
+    top: 0;
+  }
+
+  @media (max-width: 767px){
+    :root{
+      --header-padding: 2rem 0 0;
+    }
+    .header{
+      background: var(--color-black);
+    }
+    .header-container{
+      flex-wrap: wrap;
+      padding: 0 1.5rem;
+    }
+    .header .menu-icon{
+      display: block;
+    }
+  }
+  
+  @media (max-width: 480px){
+    .header-logo{
+      flex-basis: 70%;
+    }
+  }
+
+  @media (min-width: 481px) and (max-width: 767px){
+    .header-logo{
+      flex-basis: 79%;
+    }
+  }
+
+  .header .menu-icon{
+    display: none;
+  }
+
+
   /* Navbar
       ============================= */
   
@@ -309,122 +365,56 @@
     width: 100%;
   }
 
-  @media only screen and (max-width: 767px) {
-    :root {
-        --nav-item-margin: 0;
-    }
-
+  @media (max-width: 767px){
     .navbar-menu{
         display: none;
         flex: 1;
     }
-
-    .header .nav {
-        flex-direction: column;
-        overflow: hidden;
-        max-height: 0;
-        transition: max-height .2s ease-out;
+    :root{
+      --nav-item-margin: 0;
     }
-
-    .header .menu-icon {
-        cursor: pointer;
-        padding: 2.5rem;
-        position: relative;
-        user-select: none;
-        display: none;
-      }
-    
-      .header .menu-icon .navicon {
-        background: var(--color-white);
-        display: block;
-        width: 2rem;
-        height: .2rem;
-        position: relative;
-        transition: background .2s ease-out;
-      }
-    
-      .header .menu-icon .navicon::before,
-      .header .menu-icon .navicon::after {
-        content: "";
-        display: block;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        background: var(--color-white);
-        transition: all .2s ease-out;
-      }
-    
-      .header .menu-icon .navicon::before{
-        top: .7rem;
-      }
-    
-      .header .menu-icon .navicon::after{
-        top: -.7rem;
-      }
-  }
- 
-  /*menu btn*/
-  .header .menu-btn {
-    display: none;
-  }
-
-  .menu-btn:checked ~ .navbar-menu{
-    display: block;
-  }
-
-  .menu-btn:checked ~ .navbar-menu .nav {
-    max-height: 100%;
-    overflow: inherit;  
-  }
-
-  .header .menu-btn:checked ~ .menu-icon .navicon {
-    background: transparent;
-  }
-
-  .header .menu-btn:checked ~ .menu-icon .navicon:before {
-    transform: rotate(-45deg);
-  }
-
-  .header .menu-btn:checked ~ .menu-icon .navicon::after {
-    transform: rotate(45deg);
-  }
-
-  .header .menu-btn:checked ~ .menu-icon .navicon::after,
-  .header .menu-btn:checked ~ .menu-icon .navicon::before {
-    top: 0;
+    .header .nav{
+      flex-direction: column;
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height .2s ease-out;
     }
-
-    @media only screen and (max-width: 767px) {
-        :root{
-            --header-padding: 2rem 0 0;
-        }
-
-        .header {
-            background: var(--color-black);
-        }
-
-        .header-container {
-            flex-wrap: wrap;
-            padding: 0 1.5rem;
-        }
-
-        .header .menu-icon {
-            display: block;
-        }
-    }
-
-    @media only screen and (max-width: 480px) {
-        .header-logo {
-            flex-basis: 70%;
-        }
-    }
-
-    @media only screen and (min-width: 481px) and (max-width: 767px) {
-        .header-logo {
-            flex-basis: 79%;
-        }
-    }
+  }
   
+  .header .menu-icon{
+    cursor: pointer;
+    padding: 2.5rem;
+    position: relative;
+    user-select: none;
+  }
+
+  .header .menu-icon .navicon{
+    background: var(--color-white);
+    display: block;
+    width: 2rem;
+    height: .2rem;
+    position: relative;
+    transition: background .2s ease-out;
+  }
+
+  .header .menu-icon .navicon::before, .header .menu-icon .navicon::after{
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: var(--color-white);
+    transition: all .2s ease-out;
+  }
+
+  .header .menu-icon .navicon::before{
+    top: .7rem;
+  }
+
+  .header .menu-icon .navicon::after{
+    top: -.7rem;
+  }
+
   /* Header
       ============================= */
   
@@ -472,21 +462,17 @@
     fill: var(--text-color);
   }
 
-  @media only screen and (max-width: 767px) {
-    :root {
-        --footer-padding: 5rem 2rem 1rem; 
+  @media (max-width: 767px){
+    :root{
+      --footer-padding: 5rem 2rem 1rem;
     }
-
-    .footer .social.nav,
-    .footer .footer-nav {
-        text-align: center;
+    .footer .social.nav, .footer .footer-nav{
+      text-align: center;
     }
-
-    .social.nav li + li, 
-    .footer-nav li + li{
-        padding-left: 2rem;
+    .social.nav li + li, .footer-nav li + li{
+      padding-left: 2rem;
     }
-}
+  }
   
   /*** 3. SECTION ***/
   
@@ -563,6 +549,7 @@
   
   .section-hero .section-title {
     margin-bottom: 5rem;
+    min-height: 35vh;
   }
   
   .section-hero .section-inner {
@@ -570,29 +557,21 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    min-height: 35vh;
+    min-height: 50vh;
   }
 
-  @media only screen and (max-width: 767px){
-    .section-hero {
-        position: relative;
-        margin-top: -8.5rem;
-        margin: -0.1rem 0;
-      }
-
-      .hero-homepage {
-        background-image: url(images/banner-home.jpg);
-        background-position: 65% 8rem;
-        background-repeat: no-repeat;
-        background-size: 90rem auto;
-        background-position: 85% 0;
+  @media (max-width: 767px){
+    .section-hero{
+      margin: -0.1rem 0;
+    }
+    .hero-homepage{
+      background-position: 85% 0;
+    }
+    .section-hero .section-body{
+      padding: 2rem;
+    }
   }
 
-  .section-hero .section-body {
-    padding: 10rem 4rem;
-    padding: 2rem;
-  }
-}
 
   /* Section Latest news
       ============================= */
@@ -600,12 +579,13 @@
   .section-latest-news .row {
     flex-direction: row-reverse;
   }
-  
-  @media only screen and (max-width: 767px){
-    .section-latest-news .row {
+
+  @media (max-width: 767px){
+    .section-latest-news .row{
         flex-direction: column;
-      }
+    }
   }
+  
   /* Section SERVICES
       ============================= */
   
@@ -694,18 +674,16 @@
     opacity: 1;
   }
 
-  @media only screen and (max-width: 767px) {
-    .card-work .card-inner {
-        --text-color: var(--color-white);
-        position: relative;
+  @media (max-width: 767px){
+    .card-work .card-inner{
+      --text-color: var(--color-white);
+      position: relative;
     }
-
-    .card-work .card-title {
-        opacity: 1;
+    .card-work .card-title{
+      opacity: 1;
     }
-
-    .card-work .card-title a {
-        padding: 2rem 1rem 0 1rem;
+    .card-work .card-title a{
+      padding: 2rem 1rem 0 1rem;
     }
   }
   
@@ -1079,4 +1057,4 @@
     cursor: text;
     margin: 0 1rem;
   }
-  
+    
